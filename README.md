@@ -408,6 +408,1222 @@ type Mutation {
 }
 ```
 
+## GraphQL Examples
+
+## getAllPosts
+
+##### Description
+
+Retrieves a list of all posts.
+
+##### Example
+
+```graphql
+query {
+  getAllPosts {
+    id
+    title
+    slug
+    content
+    fullContent
+    createdAt
+    updatedAt
+    author {
+      id
+      username
+      email
+    }
+    tags {
+      id
+      text
+    }
+    categories {
+      id
+      name
+      slug
+    }
+  }
+}
+```
+
+## getPostById
+
+##### Description
+
+Retrieves a specific post by its ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the post.
+
+##### Example
+
+```graphql
+query {
+  getPostById(id: "123") {
+    id
+    title
+    slug
+    content
+    fullContent
+    createdAt
+    updatedAt
+    author {
+      id
+      username
+      email
+    }
+    tags {
+      id
+      text
+    }
+    categories {
+      id
+      name
+      slug
+    }
+  }
+}
+```
+
+## getAllUsers
+
+##### Description
+
+Retrieves a list of all users.
+
+##### Example
+
+```graphql
+query {
+  getAllUsers {
+    id
+    username
+    email
+    firstName
+    lastName
+    name
+    role {
+      id
+      name
+    }
+  }
+}
+```
+
+## getUserById
+
+##### Description
+
+Retrieves a specific user by their ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the user.
+
+##### Example
+
+```graphql
+query {
+  getUserById(id: "456") {
+    id
+    username
+    email
+    firstName
+    lastName
+    name
+    role {
+      id
+      name
+    }
+  }
+}
+```
+
+## getAllTags
+
+##### Description
+Retrieves a list of all tags.
+
+##### Example
+```graphql
+query {
+  getAllTags {
+    id
+    text
+  }
+}
+```
+
+## getTagById
+
+##### Description
+
+Retrieves a specific tag by its ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the tag.
+
+##### Example
+
+```graphql
+query {
+  getTagById(id: "789") {
+    id
+    text
+  }
+}
+```
+
+## getAllSliderPositions
+
+##### Description
+
+Retrieves a list of all slider positions.
+
+##### Example
+
+```graphql
+query {
+  getAllSliderPositions {
+    id
+    name
+    slug
+    slides {
+      id
+      image
+      title
+      description
+      link
+    }
+  }
+}
+```
+
+## getSliderPositionById
+
+##### Description
+
+Retrieves a specific slider position by its ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the slider position.
+
+##### Example
+
+```graphql
+query {
+  getSliderPositionById(id: "987") {
+    id
+    name
+    slug
+    slides {
+      id
+      image
+      title
+      description
+      link
+    }
+  }
+}
+```
+
+## getAllSliderSlides
+
+##### Description
+
+Retrieves a list of all slider slides.
+
+##### Example
+
+```graphql
+query {
+  getAllSliderSlides {
+    id
+    sliderPosition {
+      id
+      name
+    }
+    image
+    title
+    description
+    link
+  }
+}
+```
+
+## getSliderSlideById
+
+##### Description
+
+Retrieves a specific slider slide by its ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the slider slide.
+
+##### Example
+
+```graphql
+query {
+  getSliderSlideById(id: "654") {
+    id
+    sliderPosition {
+      id
+      name
+    }
+    image
+    title
+    description
+    link
+  }
+}
+```
+
+## getAllFAQs
+
+##### Description
+
+Retrieves a list of all FAQs.
+
+##### Example
+
+```graphql
+query {
+  getAllFAQs {
+    id
+    question
+    answer
+  }
+}
+```
+
+## getFAQById
+
+##### Description
+
+Retrieves a specific FAQ by its ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the FAQ.
+
+##### Example
+
+```graphql
+query {
+  getFAQById(id: "321") {
+    id
+    question
+    answer
+  }
+}
+```
+
+## getAllMenuPositions
+
+##### Description
+
+Retrieves a list of all menu positions.
+
+##### Example
+
+```graphql
+query {
+  getAllMenuPositions {
+    id
+    name
+    slug
+    menuItems {
+      id
+      name
+      link
+      parent {
+        id
+        name
+      }
+    }
+  }
+}
+```
+
+## getMenuPositionById
+
+##### Description
+
+Retrieves a specific menu position by its ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the menu position.
+
+##### Example
+
+```graphql
+query {
+  getMenuPositionById(id: "456") {
+    id
+    name
+    slug
+    menuItems {
+      id
+      name
+      link
+      parent {
+        id
+        name
+      }
+    }
+  }
+}
+```
+
+## getAllMenuItems
+
+##### Description
+
+Retrieves a list of all menu items.
+
+##### Example
+
+```graphql
+query {
+  getAllMenuItems {
+    id
+    menuPosition {
+      id
+      name
+    }
+    name
+    link
+    parent {
+      id
+      name
+    }
+  }
+}
+```
+
+## getMenuItemById
+
+##### Description
+
+Retrieves a specific menu item by its ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the menu item.
+
+##### Example
+
+```graphql
+query {
+  getMenuItemById(id: "789") {
+    id
+    menuPosition {
+      id
+      name
+    }
+    name
+    link
+    parent {
+      id
+      name
+    }
+  }
+}
+```
+
+## getAllCategories
+
+##### Description
+
+Retrieves a list of all categories.
+
+##### Example
+
+```graphql
+query {
+  getAllCategories {
+    id
+    name
+    slug
+    parent {
+      id
+      name
+    }
+    posts {
+      id
+      title
+      slug
+    }
+  }
+}
+```
+
+## getCategoryById
+
+##### Description
+
+Retrieves a specific category by its ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the category.
+
+##### Example
+
+```graphql
+query {
+  getCategoryById(id: "987") {
+    id
+    name
+    slug
+    parent {
+      id
+      name
+    }
+    posts {
+      id
+      title
+      slug
+    }
+  }
+}
+```
+
+## createPost
+
+##### Description
+
+Creates a new post.
+
+##### Arguments
+
+- input: CreatePostInput! (required) - The input data for creating a post.
+
+##### Example
+
+```graphql
+mutation {
+  createPost(input: {
+    title: "New Post",
+    slug: "new-post",
+    content: "Lorem ipsum dolor sit amet",
+    fullContent: "Lorem ipsum dolor sit amet,consectetur adipiscing elit. Sed ut enim at quam elementum blandit",
+    authorId: "123",
+    tagIds: ["tag1", "tag2"],
+    categoryIds: ["category1", "category2"]
+  }) {
+    id
+    title
+    slug
+    content
+    fullContent
+    createdAt
+    updatedAt
+    author {
+      id
+      username
+      email
+    }
+    tags {
+      id
+      text
+    }
+    categories {
+      id
+      name
+      slug
+    }
+  }
+}
+```
+
+## updatePost
+
+##### Description
+
+Updates an existing post.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the post to update.
+- input: UpdatePostInput! (required) - The updated data for the post.
+
+##### Example
+
+```graphql
+mutation {
+  updatePost(id: "post1", input: {
+    title: "Updated Post",
+    slug: "updated-post",
+    content: "Lorem ipsum dolor sit amet",
+    fullContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut enim at quam elementum blandit",
+    authorId: "123",
+    tagIds: ["tag1", "tag2"],
+    categoryIds: ["category1", "category2"]
+  }) {
+    id
+    title
+    slug
+    content
+    fullContent
+    createdAt
+    updatedAt
+    author {
+      id
+      username
+      email
+    }
+    tags {
+      id
+      text
+    }
+    categories {
+      id
+      name
+      slug
+    }
+  }
+}
+```
+
+## deletePost
+
+##### Description
+
+Deletes a post by its ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the post to delete.
+
+##### Example
+
+```graphql
+mutation {
+  deletePost(id: "post1")
+}
+```
+
+## createUser
+
+##### Description
+
+Creates a new user.
+
+##### Arguments
+
+- input: CreateUserInput! (required) - The input data for creating a user.
+
+##### Example
+
+```graphql
+mutation {
+  createUser(input: {
+    username: "john_doe",
+    hashedPassword: "hashedpassword123",
+    email: "john.doe@example.com",
+    firstName: "John",
+    lastName: "Doe",
+    roleId: "role1"
+  }) {
+    id
+    username
+    email
+    firstName
+    lastName
+    name
+    role {
+      id
+      name
+    }
+  }
+}
+```
+
+### updateUser
+
+##### Description
+
+Updates an existing user.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the user to update.
+- input: UpdateUserInput! (required) - The updated data for the user.
+
+##### Example
+
+```graphql
+mutation {
+  updateUser(id: "user1", input: {
+    username: "johndoe",
+    hashedPassword: "updatedhashedpassword123",
+    email: "john.doe@example.com",
+    firstName: "John",
+    lastName: "Doe",
+    roleId: "role1"
+  }) {
+    id
+    username
+    email
+    firstName
+    lastName
+    name
+    role {
+      id
+      name
+    }
+  }
+}
+```
+
+### deleteUser
+
+##### Description
+
+Deletes a user by their ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the user to delete.
+
+##### Example
+
+```graphql
+mutation {
+  deleteUser(id: "user1")
+}
+```
+
+### createTag
+
+##### Description
+
+Creates a new tag.
+
+##### Arguments
+
+- input: CreateTagInput! (required) - The input data for creating a tag.
+
+##### Example
+
+```graphql
+mutation {
+  createTag(input: {
+    text: "New Tag"
+  }) {
+    id
+    text
+  }
+}
+```
+
+### updateTag
+
+##### Description
+
+Updates an existing tag.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the tag to update.
+- input: UpdateTagInput! (required) - The updated data for the tag.
+
+##### Example
+
+```graphql
+mutation {
+  updateTag(id: "tag1", input: {
+    text: "Updated Tag"
+  }) {
+    id
+    text
+  }
+}
+```
+
+### deleteTag
+
+##### Description
+
+Deletes a tag by its ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the tag to delete.
+
+##### Example
+
+```graphql
+mutation {
+  deleteTag(id: "tag1")
+}
+```
+
+### createSliderPosition
+
+##### Description
+
+Creates a new slider position.
+
+##### Arguments
+
+- input: CreateSliderPositionInput! (required) - The input data for creating a slider position.
+
+##### Example
+
+```graphql
+mutation {
+  createSliderPosition(input: {
+    name: "New Position",
+    slug: "new-position"
+  }) {
+    id
+    name
+    slug
+  }
+}
+```
+
+### updateSliderPosition
+
+##### Description
+
+Updates an existing slider position.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the slider position to update.
+- input: UpdateSliderPositionInput! (required) - The updated data for the slider position.
+
+##### Example
+
+```graphql
+mutation {
+  updateSliderPosition(id: "position1", input: {
+    name: "Updated Position",
+    slug: "updated-position"
+  }) {
+    id
+    name
+    slug
+  }
+}
+```
+
+### deleteSliderPosition
+
+##### Description
+
+Deletes a slider position by its ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the slider position to delete.
+
+##### Example
+
+```graphql
+mutation {
+  deleteSliderPosition(id: "position1")
+}
+```
+
+### createSliderSlide
+
+##### Description
+
+Creates a new slider slide.
+
+##### Arguments
+
+- input: CreateSliderSlideInput! (required) - The input data for creating a slider slide.
+
+##### Example
+
+```graphql
+mutation {
+  createSliderSlide(input: {
+    sliderPositionId: "position1",
+    image: "slide-image.jpg",
+    title: "New Slide",
+    description: "Lorem ipsum dolor sit amet",
+    link: "https://example.com"
+  }) {
+    id
+    sliderPosition {
+      id
+      name
+    }
+    image
+    title
+    description
+    link
+  }
+}
+```
+
+### updateSliderSlide
+
+##### Description
+
+Updates an existing slider slide.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the slider slide to update.
+- input: UpdateSliderSlideInput! (required) - The updated data for the slider slide.
+
+##### Example
+
+```graphql
+mutation {
+  updateSliderSlide(id: "slide1", input: {
+    sliderPositionId: "position1",
+    image: "updated-slide-image.jpg",
+    title: "Updated Slide",
+    description: "Lorem ipsum dolor sit amet",
+    link: "https://example.com"
+  }) {
+    id
+    sliderPosition {
+      id
+      name
+    }
+    image
+    title
+    description
+    link
+  }
+}
+```
+
+### deleteSliderSlide
+
+##### Description
+
+Deletes a slider slide by its ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the slider slide to delete.
+
+##### Example
+
+```graphql
+mutation {
+  deleteSliderSlide(id: "slide1")
+}
+```
+
+### createFAQ
+
+##### Description
+
+Creates a new FAQ.
+
+##### Arguments
+
+- input: CreateFAQInput! (required) - The input data for creating an FAQ.
+
+##### Example
+
+```graphql
+mutation {
+  createFAQ(input: {
+    question: "New FAQ",
+    answer: "Lorem ipsum dolor sit amet"
+  }) {
+    id
+    question
+    answer
+  }
+}
+```
+
+### updateFAQ
+
+##### Description
+
+Updates an existing FAQ.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the FAQ to update.
+- input: UpdateFAQInput! (required) - The updated data for the FAQ.
+
+##### Example
+
+```graphql
+mutation {
+  updateFAQ(id: "faq1", input: {
+    question: "Updated FAQ",
+    answer: "Lorem ipsum dolor sit amet"
+  }) {
+    id
+    question
+    answer
+  }
+}
+```
+
+### deleteFAQ
+
+##### Description
+
+Deletes an FAQ by its ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the FAQ to delete.
+
+##### Example
+
+```graphql
+mutation {
+  deleteFAQ(id: "faq1")
+}
+```
+
+### createMenuPosition
+
+##### Description
+
+Creates a new menu position.
+
+##### Arguments
+
+- input: CreateMenuPositionInput! (required) - The input data for creating a menu position.
+
+##### Example
+
+```graphql
+mutation {
+  createMenuPosition(input: {
+    name: "New Position",
+    slug: "new-position"
+  }) {
+    id
+    name
+    slug
+  }
+}
+```
+
+### updateMenuPosition
+
+##### Description
+
+Updates an existing menu position.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the menu position to update.
+- input: UpdateMenuPositionInput! (required) - The updated data for the menu position.
+
+##### Example
+
+```graphql
+mutation {
+  updateMenuPosition(id: "position1", input: {
+    name: "Updated Position",
+    slug: "updated-position"
+  }) {
+    id
+    name
+    slug
+  }
+}
+```
+
+### deleteMenuPosition
+
+##### Description
+
+Deletes a menu position by its ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the menu position to delete.
+
+##### Example
+
+```graphql
+mutation {
+  deleteMenuPosition(id: "position1")
+}
+```
+
+### createMenuItem
+
+##### Description
+
+Creates a new menu item.
+
+##### Arguments
+
+- input: CreateMenuItemInput! (required) - The input data for creating a menu item.
+
+##### Example
+
+```graphql
+mutation {
+  createMenuItem(input: {
+    menuPositionId: "position1",
+    name: "New Menu Item",
+    link: "/new"
+  }) {
+    id
+    menuPosition {
+      id
+      name
+    }
+    name
+    link
+    parent {
+      id
+      name
+    }
+  }
+}
+```
+
+### updateMenuItem
+
+##### Description
+
+Updates an existing menu item.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the menu item to update.
+- input: UpdateMenuItemInput! (required) - The updated data for the menu item.
+
+##### Example
+
+```graphql
+mutation {
+  updateMenuItem(id: "item1", input: {
+    menuPositionId: "position1",
+    name: "Updated Menu Item",
+    link: "/updated",
+    parentId: "parent1"
+  }) {
+    id
+    menuPosition {
+      id
+      name
+    }
+    name
+    link
+    parent {
+      id
+      name
+    }
+  }
+}
+```
+
+### deleteMenuItem
+
+##### Description
+
+Deletes a menu item by its ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the menu item to delete.
+
+##### Example
+
+```graphql
+mutation {
+  deleteMenuItem(id: "item1")
+}
+```
+
+### createCategory
+
+##### Description
+
+Creates a new category.
+
+##### Arguments
+
+- input: CreateCategoryInput! (required) - The input data for creating a category.
+
+##### Example
+
+```graphql
+mutation {
+  createCategory(input: {
+    name: "New Category",
+    slug: "new-category"
+  }) {
+    id
+    name
+    slug
+    parent {
+      id
+      name
+    }
+  }
+}
+```
+
+### updateCategory
+
+##### Description
+
+Updates an existing category.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the category to update.
+- input: UpdateCategoryInput! (required) - The updated data for the category.
+
+##### Example
+
+```graphql
+mutation {
+  updateCategory(id: "category1", input: {
+    name: "Updated Category",
+    slug: "updated-category"
+  }) {
+    id
+    name
+    slug
+    parent {
+      id
+      name
+    }
+  }
+}
+```
+
+### deleteCategory
+
+##### Description
+
+Deletes a category by its ID.
+
+##### Arguments
+
+- id: ID! (required) - The ID of the category to delete.
+
+##### Example
+
+```graphql
+mutation {
+  deleteCategory(id: "category1")
+}
+```
+
 ## License
 
 This project is licensed under the GPL-3.0 License. Feel free to modify and distribute it as needed.
