@@ -51,7 +51,7 @@ git clone https://github.com/BaseMax/GeneralCMSGraphQLTS.git
 Navigate to the project directory:
 
 ```bash
-cd project-directory
+cd GeneralCMSGraphQLTS
 ```
 
 Install the dependencies:
@@ -77,6 +77,61 @@ The application should now be running locally on the specified port.
 Once the application is running, you can interact with the GraphQL API using a GraphQL client or a tool like GraphiQL or GraphQL Playground. The GraphQL endpoint will be available at http://localhost:<port>/graphql.
 
 The API provides various queries and mutations to perform CRUD operations on the entities mentioned above. You can explore the available queries and mutations by accessing the GraphQL endpoint and referring to the provided documentation or schema.
+
+## GraphQL
+
+### Queries
+
+- `getAllPosts`: Retrieves a list of all posts.
+- `getPostById(id: ID!)`: Retrieves a specific post by its ID.
+- `getAllUsers`: Retrieves a list of all users.
+- `getUserById(id: ID!)`: Retrieves a specific user by their ID.
+- `getAllTags`: Retrieves a list of all tags.
+- `getTagById(id: ID!)`: Retrieves a specific tag by its ID.
+- `getAllSliderPositions`: Retrieves a list of all slider positions.
+- `getSliderPositionById(id: ID!)`: Retrieves a specific slider position by its ID.
+- `getAllSliderSlides`: Retrieves a list of all slider slides.
+- `getSliderSlideById(id: ID!)`: Retrieves a specific slider slide by its ID.
+- `getAllFAQs`: Retrieves a list of all FAQs.
+- `getFAQById(id: ID!)`: Retrieves a specific FAQ by its ID.
+- `getAllMenuPositions`: Retrieves a list of all menu positions.
+- `getMenuPositionById(id: ID!)`: Retrieves a specific menu position by its ID.
+- `getAllMenuItems`: Retrieves a list of all menu items.
+- `getMenuItemById(id: ID!)`: Retrieves a specific menu item by its ID.
+- `getAllCategories`: Retrieves a list of all categories.
+- `getCategoryById(id: ID!)`: Retrieves a specific category by its ID.
+
+### Mutations
+
+- `createPost(input: CreatePostInput!):` Post: Creates a new post.
+- `updatePost(id: ID!, input: UpdatePostInput!):` Post: Updates an existing post.
+- `deletePost(id: ID!):` ID: Deletes a post by its ID.
+- `createUser(input: CreateUserInput!):` User: Creates a new user.
+- `updateUser(id: ID!, input: UpdateUserInput!):` User: Updates an existing user.
+- `deleteUser(id: ID!):` ID: Deletes a user by their ID.
+- `createTag(input: CreateTagInput!):` Tag: Creates a new tag.
+- `updateTag(id: ID!, input: UpdateTagInput!):` Tag: Updates an existing tag.
+- `deleteTag(id: ID!):` ID: Deletes a tag by its ID.
+- `createSliderPosition(input: CreateSliderPositionInput!):` SliderPosition: Creates a new slider position.
+- `updateSliderPosition(id: ID!, input: UpdateSliderPositionInput!):` SliderPosition: Updates an existing slider position.
+- `deleteSliderPosition(id: ID!):` ID: Deletes a slider position by its ID.
+- `createSliderSlide(input: CreateSliderSlideInput!):` SliderSlide: Creates a new slider slide.
+- `updateSliderSlide(id: ID!, input: UpdateSliderSlideInput!):` SliderSlide: Updates an existing slider slide.
+- `deleteSliderSlide(id: ID!):` ID: Deletes a slider slide by its ID.
+- `createFAQ(input: CreateFAQInput!):` FAQ: Creates a new FAQ.
+- `updateFAQ(id: ID!, input: UpdateFAQInput!):` FAQ: Updates an existing FAQ.
+- `deleteFAQ(id: ID!):` ID: Deletes an FAQ by its ID.
+- `createMenuPosition(input: CreateMenuPositionInput!):` MenuPosition: Creates a new menu position.
+- `updateMenuPosition(id: ID!, input: UpdateMenuPositionInput!):` MenuPosition: Updates an existing menu position.
+- `deleteMenuPosition(id: ID!):` ID: Deletes a menu position by its ID.
+- `createMenuItem(input: CreateMenuItemInput!): MenuItem: Creates a new menu item.
+- `updateMenuItem(id: ID!, input: UpdateMenuItemInput!):` MenuItem: Updates an existing menu item.
+- `deleteMenuItem(id: ID!):` ID: Deletes a menu item by its ID.
+- `createCategory(input: CreateCategoryInput!):` Category: Creates a new category.
+- `updateCategory(id: ID!, input: UpdateCategoryInput!):` Category: Updates an existing category.
+- `deleteCategory(id: ID!):` ID: Deletes a category by its ID.
+
+Note: The input and output types mentioned in the above queries and mutations are placeholders and may vary based on your specific implementation. Please refer to the project's GraphQL schema for accurate types and field definitions.
 
 ## Contributing
 
