@@ -74,7 +74,7 @@ The application should now be running locally on the specified port.
 
 ## GraphQL API
 
-Once the application is running, you can interact with the GraphQL API using a GraphQL client or a tool like GraphiQL or GraphQL Playground. The GraphQL endpoint will be available at http://localhost:<port>/graphql.
+Once the application is running, you can interact with the GraphQL API using a GraphQL client or a tool like GraphiQL or GraphQL Playground. The GraphQL endpoint will be available at `http://localhost:<port>/graphql`.
 
 The API provides various queries and mutations to perform CRUD operations on the entities mentioned above. You can explore the available queries and mutations by accessing the GraphQL endpoint and referring to the provided documentation or schema.
 
