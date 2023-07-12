@@ -18,7 +18,7 @@ export class CreateUserInput{
     
     @IsNotEmpty()
     @Field()
-    fistName : string ; 
+    firstName : string ; 
     
     @IsNotEmpty()
     @Field()
