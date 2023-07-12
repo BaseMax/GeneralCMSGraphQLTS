@@ -1,12 +1,14 @@
-import { Field, ObjectType } from "@nestjs/graphql";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Field, ID, ObjectType } from "@nestjs/graphql";
+import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { Role } from "../enums/role.enum";
+import * as bcrypt from 'bcrypt'
+
 
 @ObjectType()
 @Entity({name : 'User'})
-export class UserEntity {
+export class User {
     
-    @Field()
+    @Field((type)=>ID)
     @PrimaryGeneratedColumn('uuid')
     id : string ; 
     
@@ -17,6 +19,15 @@ export class UserEntity {
     @Field()
     @Column({ type : 'varchar' , nullable : false })
     password : string ;
+
+    // hash password before insert
+    @BeforeInsert()
+    @BeforeUpdate()
+    async hashPassword(){
+        if(this.password){
+            this.password = await bcrypt.hash(this.password , 10)
+        }
+    }
 
     @Field()
     @Column({ type : 'varchar' , unique : true ,nullable : false })
@@ -30,7 +41,7 @@ export class UserEntity {
     @Column({ type : 'varchar'})
     lastName : string ;
 
-    @Field()
-    @Column({ type : 'varchar' , nullable : false , default : Role.User})
-    role : Role 
+    @Field((type)=>[String])
+    @Column({ type : 'enum', array : true , enum : Role , nullable : false , default : []})
+    roles : Role[] ;
 }
