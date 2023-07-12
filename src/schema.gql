@@ -2,16 +2,29 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type UserEntity {
-  id: String!
+type User {
+  id: ID!
   username: String!
   password: String!
   email: String!
   firstName: String!
   lastName: String!
-  role: String!
+  roles: [String!]!
 }
 
 type Query {
-  getAllUsers: [UserEntity!]!
+  findAllUser: [User!]!
+  findUserById(id: String!): User!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+}
+
+input CreateUserInput {
+  username: String!
+  password: String!
+  email: String!
+  firstName: String!
+  lastName: String!
 }
