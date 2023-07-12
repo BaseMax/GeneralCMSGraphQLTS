@@ -11,13 +11,13 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
-    // GraphQLModule.forRoot<ApolloDriverConfig>({
-    //   driver : ApolloDriver,
-    //   autoSchemaFile : join(process.cwd() , "src/schema.gql"),
-    //   playground : false , 
-    //   plugins : [ApolloServerPluginLandingPageGraphQLPlayground()]
-    // }) , 
-    DatabaseModule , 
+    DatabaseModule ,
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver : ApolloDriver,
+      autoSchemaFile : join(process.cwd() , "src/schema.gql"),
+      playground : false , 
+      plugins : [ApolloServerPluginLandingPageGraphQLPlayground()]
+    }) , 
     UserModule , 
   ] , 
   controllers : [AppController] , 
