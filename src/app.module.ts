@@ -4,7 +4,6 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
-import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './config/database.module';
 import { UserModule } from './user/user.module';
@@ -20,7 +19,6 @@ import { UserModule } from './user/user.module';
     }) , 
     UserModule , 
   ] , 
-  controllers : [AppController] , 
-  providers : [AppService]
+  providers : [AppService] ,
 })
 export class AppModule {}
