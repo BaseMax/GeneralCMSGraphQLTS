@@ -1,5 +1,6 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { BadRequestException, Injectable, UnauthorizedException } from "@nestjs/common";
 import { UserService } from "src/user/user.service";
+import { RegisterInput } from "./dto/register.input";
 import { JwtPayload } from "./jwt/jwt.payload";
 
 
@@ -9,8 +10,16 @@ export class AuthService{
         private readonly userService:UserService 
     ){}
 
-    async register(){
-        
+    async register(registerInput:RegisterInput){
+        const {
+            firstName ,
+            lastName ,
+            email , 
+            username , 
+            password , 
+        } = registerInput ;
+        // check user esxist 
+        const user = await this.userService.findOne({email }) ;
     }
     
     async login(){
