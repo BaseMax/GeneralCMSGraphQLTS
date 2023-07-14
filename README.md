@@ -64,10 +64,16 @@ Set up the environment variables:
 
 Create a .env file in the project root.
 Define the required environment variables (e.g., database connection details, API keys, etc.) in the .env file.
+
+```
+mv .env.example .env
+```
+
 Start the application:
 
 ```bash
-npm run start
+npm run start:dev
+
 ```
 
 The application should now be running locally on the specified port.
