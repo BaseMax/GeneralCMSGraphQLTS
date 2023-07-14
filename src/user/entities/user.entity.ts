@@ -13,7 +13,7 @@ export class User {
     id : string ; 
     
     @Field()
-    @Column({ type : 'varchar', unique : true ,nullable : false })
+    @Column({ type : 'varchar', unique : true })
     username : string ;
 
     @Field()
