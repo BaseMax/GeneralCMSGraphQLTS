@@ -3,6 +3,8 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { JwtModule } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
 import { PassportConf } from "src/config/passport.config";
+import { UserModule } from "src/user/user.module";
+import { AuthResolver } from "./auth.resolver";
 import { AuthService } from "./auth.service";
 import { JwtStartegy } from "./jwt/jwt.strategy";
 
@@ -14,14 +16,16 @@ import { JwtStartegy } from "./jwt/jwt.strategy";
             imports : [ConfigModule],
             inject : [ConfigService] , 
             useFactory : async (configService:ConfigService)=>({
-                secret : configService.get<string>('JWT_SECRET_KEY'),
+                secret : configService.get<string>('JWT_SECRET_KEY' , "123456"),
                 signOptions : {
                     expiresIn : configService.get<string>('TOKEN_EXPIRATION')
                 }
             })
-        })
+        }) , 
+        UserModule ,
+        ConfigModule ,
     ],
-    providers : [AuthService , JwtStartegy] ,
+    providers : [AuthService , AuthResolver ,JwtStartegy] ,
     exports : [
         PassportModule , 
         JwtModule ,

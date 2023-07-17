@@ -5,7 +5,7 @@ import { Role } from "src/user/enums/role.enum";
 
 
 @Injectable()
-export class JwtAuthGuard implements CanActivate{
+export class RoleGuard implements CanActivate{
     constructor(
         private reflector : Reflector ,
     ){}
