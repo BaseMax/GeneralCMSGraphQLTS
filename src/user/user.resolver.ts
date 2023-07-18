@@ -1,8 +1,9 @@
-import { UseGuards } from "@nestjs/common";
-import { Resolver , Query, Args, Mutation } from "@nestjs/graphql";
+import { Req, UseGuards } from "@nestjs/common";
+import { Resolver , Query, Args, Mutation, Context } from "@nestjs/graphql";
 import { AuthGuard } from "@nestjs/passport";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
 import { RoleGuard } from "src/auth/guards/role.guard";
+import { CurrentUser } from "src/common/decorators/current-user";
 import { HasRoles } from "./decorator/role.decorator";
 import { CreateUserInput } from "./dto/create-user.input";
 import { User } from "./entities/user.entity";

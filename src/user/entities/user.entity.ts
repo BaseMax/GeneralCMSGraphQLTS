@@ -1,7 +1,8 @@
 import { Field, ID, ObjectType } from "@nestjs/graphql";
-import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Role } from "../enums/role.enum";
 import * as bcrypt from 'bcrypt'
+import { Post } from "src/post/entity/post.entity";
 
 
 @ObjectType()
@@ -44,4 +45,8 @@ export class User {
     @Field((type)=>[String])
     @Column({ type : 'enum', array : true , enum : Role , nullable : false , default : []})
     roles : Role[] ;
+
+    @Field((type)=>[Post])
+    @OneToMany(()=> Post , (post)=>post.author)
+    Posts : Post[]
 }
