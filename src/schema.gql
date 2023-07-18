@@ -2,6 +2,17 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Post {
+  id: ID!
+  title: String!
+  slug: String!
+  content: String!
+  fullContent: String!
+  createdAt: String!
+  updatedAt: String!
+  author: User!
+}
+
 type User {
   id: ID!
   username: String!
@@ -10,6 +21,11 @@ type User {
   firstName: String!
   lastName: String!
   roles: [String!]!
+  Posts: [Post!]!
+}
+
+type AuthenticatedPayload {
+  access_token: String!
 }
 
 type Query {
@@ -19,6 +35,8 @@ type Query {
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
+  register(registerInput: RegisterInput!): AuthenticatedPayload!
+  login(loginInput: LoginInput!): AuthenticatedPayload!
 }
 
 input CreateUserInput {
@@ -27,4 +45,17 @@ input CreateUserInput {
   email: String!
   firstName: String!
   lastName: String!
+}
+
+input RegisterInput {
+  username: String!
+  password: String!
+  email: String!
+  firstName: String!
+  lastName: String!
+}
+
+input LoginInput {
+  username: String!
+  password: String!
 }
