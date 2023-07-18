@@ -1,5 +1,6 @@
 import { CanActivate, ExecutionContext, ForbiddenException, Injectable } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
+import { GqlExecutionContext } from "@nestjs/graphql";
 import { Observable } from "rxjs";
 import { Role } from "src/user/enums/role.enum";
 
@@ -10,17 +11,19 @@ export class RoleGuard implements CanActivate{
         private reflector : Reflector ,
     ){}
 
-    canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
+    canActivate(context: GqlExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
+        const ctx = GqlExecutionContext.create(context);
         const requiredRoles = this.reflector.getAllAndOverride<Role[]>('roles',[
-            context.getHandler() , 
-            context.getClass()
+            ctx.getHandler() , 
+            ctx.getClass()
         ])
 
         if(!requiredRoles){
             return true ;
         }
 
-        const { user } = context.switchToHttp().getRequest() ;
+        const { user } = ctx.getContext().req;
+        console.log(user)
 
         return requiredRoles.some((role)=>user?.roles?.includes(role));
     }

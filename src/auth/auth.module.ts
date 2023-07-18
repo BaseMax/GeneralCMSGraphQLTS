@@ -18,16 +18,16 @@ import { JwtStartegy } from "./jwt/jwt.strategy";
             useFactory : async (configService:ConfigService)=>({
                 secret : configService.get<string>('JWT_SECRET_KEY' , "123456"),
                 signOptions : {
-                    expiresIn : configService.get<string>('TOKEN_EXPIRATION')
+                    expiresIn : configService.get<string>('TOKEN_EXPIRATION' , '20h')
                 }
             })
         }) , 
         UserModule ,
         ConfigModule ,
     ],
-    providers : [AuthService , AuthResolver ,JwtStartegy] ,
+    providers : [AuthService , AuthResolver , JwtStartegy] ,
     exports : [
-        PassportModule , 
+        PassportModule ,
         JwtModule ,
     ]
 })
