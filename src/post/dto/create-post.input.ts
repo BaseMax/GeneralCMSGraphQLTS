@@ -24,11 +24,11 @@ export class CreatePostInput {
     fullContent : string ; 
     
 
-    @Field()
-    @IsNotEmpty()
-    tagId : string[] ;
+    // @Field()
+    // @IsNotEmpty()
+    // tagId : string[] ;
     
-    @Field()
-    @IsNotEmpty()
-    categoryId : string[] ;
+    // @Field()
+    // @IsNotEmpty()
+    // categoryId : string[] ;
 }
