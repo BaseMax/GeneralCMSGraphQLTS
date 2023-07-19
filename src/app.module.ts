@@ -24,7 +24,10 @@ import { MenuPositionModule } from './menu-position/menu-position.module';
     }) , 
     UserModule , 
     AuthModule , 
-    PostModule, CategoryModule, FaqModule, MenuPositionModule
+    PostModule, 
+    CategoryModule, 
+    FaqModule, 
+    MenuPositionModule
   ] , 
   providers : [] ,
 })
