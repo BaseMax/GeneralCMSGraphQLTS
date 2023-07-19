@@ -32,7 +32,7 @@ export class Post{
     createdAt : Date ;
 
     @Field(type=>String)
-    @Column({type : 'date' , nullable : false})
+    @Column({type : 'date' , default : new Date()})
     updatedAt : Date ;
 
     @Field(type=>User)
