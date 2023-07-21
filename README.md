@@ -40,13 +40,13 @@ The project consists of the following entities and their corresponding attribute
 
 ## Demo
 
-![GraphQL Project with TypeScript and NestJS](screenshots/Screenshot from 2023-07-21 23-09-29.png)
+![GraphQL Project with TypeScript and NestJS](screenshots/1.png)
 
-![GraphQL Project with TypeScript and NestJS](screenshots/Screenshot from 2023-07-21 23-13-23.png)
+![GraphQL Project with TypeScript and NestJS](screenshots/2.png)
 
-![GraphQL Project with TypeScript and NestJS](screenshots/Screenshot from 2023-07-21 23-15-17.png)
+![GraphQL Project with TypeScript and NestJS](screenshots/3.png)
 
-![GraphQL Project with TypeScript and NestJS](screenshots/Screenshot from 2023-07-21 23-16-16.png)
+![GraphQL Project with TypeScript and NestJS](screenshots/4.png)
 
 ## Installation
 
