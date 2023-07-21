@@ -2,6 +2,12 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Category {
+  id: ID!
+  name: String!
+  posts: [Post!]!
+}
+
 type Post {
   id: ID!
   title: String!
@@ -11,6 +17,7 @@ type Post {
   createdAt: String!
   updatedAt: String!
   author: User!
+  categories: [Category!]!
 }
 
 type User {
@@ -28,9 +35,10 @@ type AuthenticatedPayload {
   access_token: String!
 }
 
-type Category {
-  """Example field (placeholder)"""
-  exampleField: Int!
+type StatusResult {
+  message: String!
+  success: Boolean!
+  id: ID!
 }
 
 type Faq {
@@ -47,9 +55,8 @@ type Query {
   findAllUser: [User!]!
   findUserById(id: String!): User!
   findAllPost: [Post!]!
-  findOne(id: String!): Post!
-  findPostsByUser: Post!
-  category(id: Int!): Category!
+  findOnePost(id: String!): Post!
+  category(id: String!): Category!
   faq(id: Int!): Faq!
   menuPosition(id: Int!): MenuPosition!
 }
@@ -60,8 +67,8 @@ type Mutation {
   login(loginInput: LoginInput!): AuthenticatedPayload!
   createPost(createPostInput: CreatePostInput!): Post!
   createCategory(createCategoryInput: CreateCategoryInput!): Category!
-  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
-  removeCategory(id: Int!): Category!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!): StatusResult!
+  removeCategory(id: String!): StatusResult!
   createFaq(createFaqInput: CreateFaqInput!): Faq!
   updateFaq(updateFaqInput: UpdateFaqInput!): Faq!
   removeFaq(id: Int!): Faq!
@@ -99,14 +106,12 @@ input CreatePostInput {
 }
 
 input CreateCategoryInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
 }
 
 input UpdateCategoryInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  name: String
+  id: ID!
 }
 
 input CreateFaqInput {
