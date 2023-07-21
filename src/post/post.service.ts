@@ -25,7 +25,7 @@ export class PostService {
     }
 
     async findAllPost():Promise<Post[]>{
-        return await this.postRepo.find({select : {author : {firstName  : true, lastName : true}}})
+        return await this.postRepo.find({relations : ['author']})
     }
 
     async create(createPostInput:CreatePostInput , user:User):Promise<Post>{

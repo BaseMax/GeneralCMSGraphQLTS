@@ -1,6 +1,7 @@
 import { UseGuards } from "@nestjs/common";
 import { Args, Context, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
+import { GqlUser } from "src/common/decorators/gql-user.decorator";
 import { CreatePostInput } from "./dto/create-post.input";
 import { Post } from "./entity/post.entity";
 import { PostService } from "./post.service";
@@ -15,7 +16,8 @@ export class PostResolver {
     @Query(()=>[Post] , {name : 'findAllPost'})
     @UseGuards(JwtAuthGuard)
     async findAllPost(){
-        return await this.postService.findAllPost()
+        const result = await this.postService.findAllPost()
+        return result 
     }
 
     @Query(()=>Post , {name : 'findOne'})
@@ -26,8 +28,7 @@ export class PostResolver {
 
     @Query(()=>Post , {name : 'findPostsByUser'})
     @UseGuards(JwtAuthGuard)
-    async findPostsByUser(@Context() context){
-        const {user} = context;
+    async findPostsByUser(@GqlUser() user){
         return await this.postService.findPostsByUser(user);
     }
 
@@ -35,9 +36,9 @@ export class PostResolver {
     @UseGuards(JwtAuthGuard)
     async createPost(
         @Args('createPostInput') createPostInput:CreatePostInput,
-        @Context() context 
+        @GqlUser() user ,
         ){
-        const {user} = context ;
-        return await this.postService.create(createPostInput , user); 
+        console.log(user)
+        return await this.postService.create(createPostInput , user) ; 
     }
 };

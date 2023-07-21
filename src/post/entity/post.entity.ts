@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType } from "@nestjs/graphql";
+import { Category } from "src/category/entities/category.entity";
 import { User } from "src/user/entities/user.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
@@ -38,4 +39,10 @@ export class Post{
     @Field(type=>User)
     @ManyToOne(()=>User , (user)=>user)
     author : User ; 
+
+
+    @Field(type=>[Category])
+    @ManyToOne(()=>Category , (category)=>category.posts)
+    categories : Category[] ; 
+    
 }
