@@ -4,7 +4,7 @@ import { UserService } from "src/user/user.service";
 import { LoginInput } from "./dto/login.input";
 import { RegisterInput } from "./dto/register.input";
 import { JwtPayload } from "./jwt/jwt.payload";
-import * as bcrypt from 'bcrypt' ;
+import {compare} from 'bcrypt';
 
 
 @Injectable()
@@ -17,6 +17,14 @@ export class AuthService{
     
     private async _signToken(payload:JwtPayload):Promise<string>{
         return await this.jwtService.signAsync(payload) ;
+    }
+
+    private async _comparePassword(data:string , hash:string):Promise<boolean>{
+        try {
+            return await compare(data , hash);
+        } catch (error) {
+            return false;
+        }
     }
 
     async register(registerInput:RegisterInput){
@@ -58,19 +66,8 @@ export class AuthService{
     }
     
     async login(loginInput:LoginInput){
-        const { username , password } = loginInput ;
-
-        const user = await this.userService.findOne({username}) ;
-
-        if(!user){
-            throw new BadRequestException('username is invalid');
-        }
-
-        const comparePassword = bcrypt.compareSync(password , user.password);
-
-        if(!comparePassword){
-            throw new BadRequestException('password is invalid');
-        }
+        
+        const user = await this.userService.findByLogin(loginInput);
         
         const payload:JwtPayload = {
             roles : user.roles ,
