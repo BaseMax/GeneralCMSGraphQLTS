@@ -38,6 +38,16 @@ The project consists of the following entities and their corresponding attribute
 - Categories (id, name, slug, parent_id=null)
 - Post Categories (id, post_id, category_id)
 
+## Demo
+
+![GraphQL Project with TypeScript and NestJS](screenshots/Screenshot from 2023-07-21 23-09-29.png)
+
+![GraphQL Project with TypeScript and NestJS](screenshots/Screenshot from 2023-07-21 23-13-23.png)
+
+![GraphQL Project with TypeScript and NestJS](screenshots/Screenshot from 2023-07-21 23-15-17.png)
+
+![GraphQL Project with TypeScript and NestJS](screenshots/Screenshot from 2023-07-21 23-16-16.png)
+
 ## Installation
 
 To run this GraphQL project locally, follow the instructions below:
