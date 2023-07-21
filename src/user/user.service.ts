@@ -1,5 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { compare } from "bcrypt";
+import { LoginInput } from "src/auth/dto/login.input";
 import { FindOptionsWhere, Repository } from "typeorm";
 import { CreateUserInput } from "./dto/create-user.input";
 import { User  } from "./entities/user.entity";
@@ -20,6 +22,24 @@ export class UserService {
 
     async findOne(where:Where):Promise<User>{
         return await this.userRepo.findOne({where}) ; 
+    }
+
+    async findByLogin(loginInput:LoginInput):Promise<User>{
+        const { username , password } = loginInput ;
+
+        const user = await this.findOne({username}) ;
+
+        if(!user){
+            throw new BadRequestException('username is invalid');
+        }
+
+        const comparePassword = await compare(password , user.password);
+        
+        if(!comparePassword){
+            throw new BadRequestException('password is invalid');
+        }
+
+        return user ; 
     }
 
     async create(createUserInput:CreateUserInput):Promise<User>{

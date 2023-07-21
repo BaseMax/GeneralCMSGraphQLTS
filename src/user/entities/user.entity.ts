@@ -3,7 +3,6 @@ import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGenerated
 import { Role } from "../enums/role.enum";
 import * as bcrypt from 'bcrypt'
 import { Post } from "src/post/entity/post.entity";
-import { Exclude } from "class-transformer";
 
 
 @ObjectType()
@@ -19,7 +18,7 @@ export class User {
     username : string ;
 
     @Field()
-    @Column({ type : 'varchar' , nullable : false , select : false})
+    @Column({ type : 'varchar' , nullable : false})
     password : string ;
 
     // hash password before insert
@@ -44,7 +43,7 @@ export class User {
     lastName : string ;
 
     @Field((type)=>[String])
-    @Column({ type : 'enum', array : true , enum : Role , nullable : false , select : false ,default : []})
+    @Column({ type : 'enum', array : true , enum : Role , nullable : false ,default : []})
     roles : Role[] ;
 
     @Field((type)=>[Post])
