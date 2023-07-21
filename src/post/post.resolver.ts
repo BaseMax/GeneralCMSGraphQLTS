@@ -16,20 +16,13 @@ export class PostResolver {
     @Query(()=>[Post] , {name : 'findAllPost'})
     @UseGuards(JwtAuthGuard)
     async findAllPost(){
-        const result = await this.postService.findAllPost()
-        return result 
+       return await this.postService.findAllPost()
     }
 
-    @Query(()=>Post , {name : 'findOne'})
+    @Query(()=>Post , {name : 'findOnePost'})
     @UseGuards(JwtAuthGuard)
-    async findOne(@Args('id' , {type : ()=>String}) id : string ){
+    async findOnePost(@Args('id' , {type : ()=>String}) id : string ){
         return await this.postService.findOne({id})
-    }
-
-    @Query(()=>Post , {name : 'findPostsByUser'})
-    @UseGuards(JwtAuthGuard)
-    async findPostsByUser(@GqlUser() user){
-        return await this.postService.findPostsByUser(user);
     }
 
     @Mutation(()=>Post)
@@ -38,7 +31,6 @@ export class PostResolver {
         @Args('createPostInput') createPostInput:CreatePostInput,
         @GqlUser() user ,
         ){
-        console.log(user)
         return await this.postService.create(createPostInput , user) ; 
     }
 };
