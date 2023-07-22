@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { StatusResult } from 'src/common/utils/status-result';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CreateCategoryInput } from './dto/create-category.input';
 import { UpdateCategoryInput } from './dto/update-category.input';
 import { Category } from './entities/category.entity';
@@ -34,6 +34,20 @@ export class CategoryService {
 
   async findOne(id: string):Promise<Category>{
     return await this.categoryRepo.findOneBy({id});
+  }
+
+  async findByIds(ids:string[]):Promise<Category[]>{
+    const validCategories = await this.categoryRepo.findBy({id : In(ids)});
+  
+    // Check if all category IDs provided by the user are valid
+    if (validCategories.length !== ids.length) {
+      const invalidCategoryIds = ids.filter((categoryId) => {
+          return !validCategories.some((category) => category.id === categoryId)
+      });
+      throw new NotFoundException(`Invalid category IDs : ${invalidCategoryIds}`);
+    }
+
+    return validCategories ; 
   }
 
   async update(id: string, updateCategoryInput: UpdateCategoryInput):Promise<StatusResult>{
