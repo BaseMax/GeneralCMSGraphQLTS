@@ -1,7 +1,7 @@
 import { Field, ID, ObjectType } from "@nestjs/graphql";
 import { Category } from "src/category/entities/category.entity";
 import { User } from "src/user/entities/user.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 
 @ObjectType()
@@ -42,7 +42,7 @@ export class Post{
 
 
     @Field(type=>[Category])
-    @ManyToOne(()=>Category , (category)=>category.posts)
-    categories : Category[] ; 
-    
+    @ManyToMany(() => Category)
+    @JoinTable()
+    categories: Category[]
 }
