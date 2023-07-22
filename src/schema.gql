@@ -8,6 +8,12 @@ type Category {
   posts: [Post!]!
 }
 
+type Tag {
+  id: ID!
+  text: ID!
+  posts: [Post!]!
+}
+
 type Post {
   id: ID!
   title: String!
@@ -18,6 +24,7 @@ type Post {
   updatedAt: String!
   author: User!
   categories: [Category!]!
+  tags: [Tag!]!
 }
 
 type User {
@@ -31,14 +38,14 @@ type User {
   Posts: [Post!]!
 }
 
-type AuthenticatedPayload {
-  access_token: String!
-}
-
 type StatusResult {
   message: String!
   success: Boolean!
   id: ID!
+}
+
+type AuthenticatedPayload {
+  access_token: String!
 }
 
 type Faq {
@@ -58,18 +65,25 @@ type Query {
   findOnePost(id: String!): Post!
   findAllcategory: [Category!]!
   findOneCategory(id: String!): Category!
+  tag(id: String!): Tag!
   faq(id: Int!): Faq!
   menuPosition(id: Int!): MenuPosition!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): StatusResult!
+  removeUser(id: String!): StatusResult!
   register(registerInput: RegisterInput!): AuthenticatedPayload!
   login(loginInput: LoginInput!): AuthenticatedPayload!
   createPost(createPostInput: CreatePostInput!): Post!
+  updatePost(updatePostInput: UpdatePostInput!): StatusResult!
+  removePost(id: String!): StatusResult!
   createCategory(createCategoryInput: CreateCategoryInput!): Category!
   updateCategory(updateCategoryInput: UpdateCategoryInput!): StatusResult!
   removeCategory(id: String!): StatusResult!
+  createTag(createTagInput: CreateTagInput!): Tag!
+  removeTag(id: String!): StatusResult!
   createFaq(createFaqInput: CreateFaqInput!): Faq!
   updateFaq(updateFaqInput: UpdateFaqInput!): Faq!
   removeFaq(id: Int!): Faq!
@@ -82,6 +96,12 @@ input CreateUserInput {
   username: String!
   password: String!
   email: String!
+  firstName: String!
+  lastName: String!
+}
+
+input UpdateUserInput {
+  password: String!
   firstName: String!
   lastName: String!
 }
@@ -104,7 +124,18 @@ input CreatePostInput {
   slug: String!
   content: String!
   fullContent: String!
+  tagIds: [String!]!
   categoryIds: [String!]!
+}
+
+input UpdatePostInput {
+  title: String
+  slug: String
+  content: String
+  fullContent: String
+  tagIds: [String!]
+  categoryIds: [String!]
+  id: ID!
 }
 
 input CreateCategoryInput {
@@ -114,6 +145,10 @@ input CreateCategoryInput {
 input UpdateCategoryInput {
   name: String
   id: ID!
+}
+
+input CreateTagInput {
+  text: String!
 }
 
 input CreateFaqInput {
