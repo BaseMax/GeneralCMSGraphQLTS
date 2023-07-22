@@ -3,7 +3,7 @@ import { CategoryService } from './category.service';
 import { Category } from './entities/category.entity';
 import { CreateCategoryInput } from './dto/create-category.input';
 import { UpdateCategoryInput } from './dto/update-category.input';
-import { StatusResult } from './entities/status-result.entity';
+import { StatusResult } from '../common/entities/status-result.entity';
 import { RoleGuard } from 'src/auth/guards/role.guard';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { Role } from 'src/user/enums/role.enum';
