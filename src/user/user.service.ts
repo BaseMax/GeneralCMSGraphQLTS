@@ -2,8 +2,10 @@ import { BadRequestException, Injectable, NotFoundException } from "@nestjs/comm
 import { InjectRepository } from "@nestjs/typeorm";
 import { compare } from "bcrypt";
 import { LoginInput } from "src/auth/dto/login.input";
+import { StatusResult } from "src/common/entities/status-result.entity";
 import { FindOptionsWhere, Repository } from "typeorm";
 import { CreateUserInput } from "./dto/create-user.input";
+import { UpdateUserInput } from "./dto/update-user.input";
 import { User  } from "./entities/user.entity";
 import { Role } from "./enums/role.enum";
 
@@ -80,5 +82,32 @@ export class UserService {
         user.roles = roles;
         
         return this.userRepo.save(user);
+    }
+
+    async update(user:User , updateUserInput:UpdateUserInput):Promise<StatusResult>{
+        const statusResult:StatusResult = {
+            message : 'edited successfully' , 
+            success : true , 
+        }
+        const {
+            firstName , 
+            lastName ,
+            password , 
+        } = updateUserInput ;
+
+        await this.userRepo.update({id : user.id} , {firstName , lastName , password});
+
+        return statusResult ; 
+    }
+
+    async remove(id:string):Promise<StatusResult>{
+        const statusResult:StatusResult = {
+            success : true , 
+            message : 'user removed successfully'
+        }
+
+        await this.userRepo.delete({id}) ;
+
+        return statusResult ;
     }
 }
