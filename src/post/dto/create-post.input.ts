@@ -28,7 +28,7 @@ export class CreatePostInput {
     // @IsNotEmpty()
     // tagId : string[] ;
     
-    // @Field()
-    // @IsNotEmpty()
-    // categoryId : string[] ;
+    @Field((type)=>[String])
+    @IsNotEmpty()
+    categoryIds : string[] ;
 }
