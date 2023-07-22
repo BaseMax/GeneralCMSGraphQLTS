@@ -21,12 +21,12 @@ export class CategoryResolver {
     return this.categoryService.create(createCategoryInput);
   }
 
-  @Query(() => [Category], { name: 'category' })
+  @Query(() => [Category], { name: 'findAllcategory' })
   findAll() {
     return this.categoryService.findAll();
   }
 
-  @Query(() => Category, { name: 'category' })
+  @Query(() => Category, { name: 'findOneCategory' })
   findOne(@Args('id', { type: () => String }) id: string) {
     return this.categoryService.findOne(id);
   }
@@ -34,14 +34,14 @@ export class CategoryResolver {
 
   @HasRoles(Role.Admin)
   @UseGuards(JwtAuthGuard , RoleGuard)
-  @Mutation(() => StatusResult)
+  @Mutation(() => StatusResult , {name : "updateCategory"})
   updateCategory(@Args('updateCategoryInput') updateCategoryInput: UpdateCategoryInput) {
     return this.categoryService.update(updateCategoryInput.id, updateCategoryInput);
   }
 
   @HasRoles(Role.Admin)
   @UseGuards(JwtAuthGuard , RoleGuard)
-  @Mutation(() => StatusResult)
+  @Mutation(() => StatusResult , {name : "removeCategory"})
   removeCategory(@Args('id', { type: () => String }) id: string) {
     return this.categoryService.remove(id);
   }
