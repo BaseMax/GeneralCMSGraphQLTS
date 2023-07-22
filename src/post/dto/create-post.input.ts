@@ -24,9 +24,9 @@ export class CreatePostInput {
     fullContent : string ; 
     
 
-    // @Field()
-    // @IsNotEmpty()
-    // tagId : string[] ;
+    @Field(()=>[String])
+    @IsNotEmpty()
+    tagIds : string[] ;
     
     @Field((type)=>[String])
     @IsNotEmpty()
