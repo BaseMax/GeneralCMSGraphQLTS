@@ -11,6 +11,7 @@ import { UserModule } from './user/user.module';
 import { CategoryModule } from './category/category.module';
 import { FaqModule } from './faq/faq.module';
 import { MenuPositionModule } from './menu-position/menu-position.module';
+import { TagModule } from './tag/tag.module';
 
 @Module({
   imports: [
@@ -27,7 +28,7 @@ import { MenuPositionModule } from './menu-position/menu-position.module';
     PostModule, 
     CategoryModule, 
     FaqModule, 
-    MenuPositionModule
+    MenuPositionModule, TagModule
   ] , 
   providers : [] ,
 })
