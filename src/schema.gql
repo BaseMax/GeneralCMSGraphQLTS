@@ -56,7 +56,8 @@ type Query {
   findUserById(id: String!): User!
   findAllPost: [Post!]!
   findOnePost(id: String!): Post!
-  category(id: String!): Category!
+  findAllcategory: [Category!]!
+  findOneCategory(id: String!): Category!
   faq(id: Int!): Faq!
   menuPosition(id: Int!): MenuPosition!
 }
@@ -103,6 +104,7 @@ input CreatePostInput {
   slug: String!
   content: String!
   fullContent: String!
+  categoryIds: [String!]!
 }
 
 input CreateCategoryInput {
