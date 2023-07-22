@@ -1,5 +1,7 @@
 import { BadRequestException, HttpException, HttpStatus, Injectable, NotFoundException} from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { CategoryService } from "src/category/category.service";
+import { Category } from "src/category/entities/category.entity";
 import { User } from "src/user/entities/user.entity";
 import { FindOptionsWhere, Repository, UpdateResult } from "typeorm";
 import { CreatePostInput } from "./dto/create-post.input";
@@ -13,19 +15,29 @@ type Where = FindOptionsWhere<Post>
 export class PostService {
     constructor(
         @InjectRepository(Post)
-        private readonly postRepo:Repository<Post>
+        private readonly postRepo:Repository<Post> , 
+        private readonly categoryService:CategoryService ,
     ){}
 
     async findOne(where:Where):Promise<Post>{
-        return await this.postRepo.findOne({where , relations : ['author']})
+        return await this.postRepo.findOne({where , relations : {
+            author : true , 
+            categories : true 
+        }})
     }
 
     async findPostsByUser(user:User):Promise<Post[]>{
-        return await this.postRepo.find({relations : ['author']})
+        return await this.postRepo.find({relations : {
+            author : true ,
+            categories : true    
+        }})
     }
 
     async findAllPost():Promise<Post[]>{
-        return await this.postRepo.find({relations : ['author']})
+        return await this.postRepo.find({relations : {
+            author : true , 
+            categories : true 
+        }})
     }
 
     async create(createPostInput:CreatePostInput , user:User):Promise<Post>{
@@ -34,10 +46,9 @@ export class PostService {
             content ,
             fullContent ,  
             slug ,
-            // categoryId , 
+            categoryIds , 
             // tagId ,   
         } = createPostInput ;
-
 
         const postInSlug = await this.findOne({slug});
 
@@ -45,13 +56,15 @@ export class PostService {
             throw new BadRequestException('this slug alredy used')
         }
 
+        const categories = await this.categoryService.findByIds(categoryIds);
+
         const newPost = new Post() ;
         newPost.title = title ;
         newPost.content = content ; 
         newPost.fullContent = fullContent ; 
         newPost.slug = slug ; 
         newPost.author = user ;
-
+        newPost.categories = categories ;
         return await this.postRepo.save(newPost) ;
     }
 
@@ -61,7 +74,7 @@ export class PostService {
             content , 
             fullContent , 
             slug , 
-            // categoryId , 
+            categoryIds ,
             // tagId , 
         } = updatePostInput ;
 
@@ -72,6 +85,8 @@ export class PostService {
             throw new NotFoundException('post is not found')
         }
 
+        const categories = await this.categoryService.findByIds(categoryIds)
+        
         await this.postRepo.update({
            id 
         },
@@ -80,7 +95,8 @@ export class PostService {
             content , 
             fullContent , 
             slug , 
-            updatedAt : new Date()
+            updatedAt : new Date() , 
+            categories : categories  ,
         });
 
         return new HttpException('post updated successfully' , HttpStatus.ACCEPTED) ; 
