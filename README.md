@@ -48,6 +48,8 @@ The project consists of the following entities and their corresponding attribute
 
 ![GraphQL Project with TypeScript and NestJS](screenshots/4.png)
 
+![GraphQL Project with TypeScript and NestJS](screenshots/5.png)
+
 ## Installation
 
 To run this GraphQL project locally, follow the instructions below:
