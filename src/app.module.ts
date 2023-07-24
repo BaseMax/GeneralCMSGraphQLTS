@@ -1,7 +1,6 @@
 import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { AuthModule } from './auth/auth.module';
@@ -12,6 +11,8 @@ import { CategoryModule } from './category/category.module';
 import { FaqModule } from './faq/faq.module';
 import { MenuPositionModule } from './menu-position/menu-position.module';
 import { TagModule } from './tag/tag.module';
+import { SliderSlideModule } from './slider-slide/slider-slide.module';
+import { MenuItemModule } from './menu-item/menu-item.module';
 
 @Module({
   imports: [
@@ -28,7 +29,7 @@ import { TagModule } from './tag/tag.module';
     PostModule, 
     CategoryModule, 
     FaqModule, 
-    MenuPositionModule, TagModule
+    MenuPositionModule, TagModule, SliderSlideModule, MenuItemModule
   ] , 
   providers : [] ,
 })
