@@ -151,6 +151,10 @@ The API provides various queries and mutations to perform CRUD operations on the
 
 Note: The input and output types mentioned in the above queries and mutations are placeholders and may vary based on your specific implementation. Please refer to the project's GraphQL schema for accurate types and field definitions.
 
+**Note** : Users are created and have the normal user role by default , But the person who enters first has an admin flag , Roles are written in enum type and column role is set in this way
+
+**roles: ["Admin" , "User"]**
+
 ## Contributing
 
 If you want to contribute to this project, you can follow the steps below:
@@ -179,6 +183,7 @@ type Post {
   categories: [Category!]!
 }
 
+
 type User {
   id: ID!
   username: String!
@@ -190,11 +195,6 @@ type User {
   role: Role!
 }
 
-type UserPermissions {
-  user_id: ID!
-  key: String!
-  value: Int!
-}
 
 type SliderPosition {
   id: ID!
