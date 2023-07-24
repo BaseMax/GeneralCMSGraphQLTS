@@ -6,6 +6,8 @@ import { Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { User } from 'src/user/entities/user.entity';
 import { Post } from 'src/post/entity/post.entity';
+import { PassportModule } from '@nestjs/passport';
+import { PassportConf } from 'src/config/passport.config';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -13,9 +15,9 @@ describe('AppController (e2e)', () => {
   let postRepo : Repository<Post> ; 
 
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [AppModule , PassportModule.register(PassportConf)],
     }).compile();
 
     app = moduleFixture.createNestApplication();
@@ -23,6 +25,10 @@ describe('AppController (e2e)', () => {
     postRepo = app.get<Repository<Post>>(getRepositoryToken(Post));
     await app.init();
   });
+
+  afterAll(async ()=>{
+    await app.close()
+  })
 
 
   describe("auth", () => {
@@ -81,4 +87,6 @@ describe('AppController (e2e)', () => {
         
         });
       });
+
+      
 });
