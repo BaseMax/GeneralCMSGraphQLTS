@@ -1,7 +1,13 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
+import { IsNotEmpty } from 'class-validator';
 
 @InputType()
 export class CreateMenuPositionInput {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  @Field((type)=>String)
+  @IsNotEmpty()
+  name : string ; 
+
+  @Field((type)=>String)
+  @IsNotEmpty()
+  slug : string ; 
 }
