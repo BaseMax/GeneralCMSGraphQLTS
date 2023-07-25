@@ -53,7 +53,21 @@ type Faq {
   exampleField: Int!
 }
 
+type MenuItem {
+  id: ID!
+  name: String!
+  link: String!
+  menuPosition: [MenuPosition!]!
+}
+
 type MenuPosition {
+  id: ID!
+  name: String!
+  slug: String!
+  menuItems: [MenuItem!]!
+}
+
+type SliderSlide {
   """Example field (placeholder)"""
   exampleField: Int!
 }
@@ -67,7 +81,10 @@ type Query {
   findOneCategory(id: String!): Category!
   tag(id: String!): Tag!
   faq(id: Int!): Faq!
-  menuPosition(id: Int!): MenuPosition!
+  findAllMenuPosition: [MenuPosition!]!
+  findOneMenuPosition(id: String!): MenuPosition!
+  sliderSlide(id: Int!): SliderSlide!
+  menuItem(id: Int!): MenuItem!
 }
 
 type Mutation {
@@ -88,8 +105,14 @@ type Mutation {
   updateFaq(updateFaqInput: UpdateFaqInput!): Faq!
   removeFaq(id: Int!): Faq!
   createMenuPosition(createMenuPositionInput: CreateMenuPositionInput!): MenuPosition!
-  updateMenuPosition(updateMenuPositionInput: UpdateMenuPositionInput!): MenuPosition!
-  removeMenuPosition(id: Int!): MenuPosition!
+  updateMenuPosition(updateMenuPositionInput: UpdateMenuPositionInput!): StatusResult!
+  removeMenuPosition(id: String!): StatusResult!
+  createSliderSlide(createSliderSlideInput: CreateSliderSlideInput!): SliderSlide!
+  updateSliderSlide(updateSliderSlideInput: UpdateSliderSlideInput!): SliderSlide!
+  removeSliderSlide(id: Int!): SliderSlide!
+  createMenuItem(createMenuItemInput: CreateMenuItemInput!): MenuItem!
+  updateMenuItem(updateMenuItemInput: UpdateMenuItemInput!): MenuItem!
+  removeMenuItem(id: Int!): MenuItem!
 }
 
 input CreateUserInput {
@@ -163,11 +186,33 @@ input UpdateFaqInput {
 }
 
 input CreateMenuPositionInput {
+  name: String!
+  slug: String!
+}
+
+input UpdateMenuPositionInput {
+  name: String
+  slug: String
+  id: ID!
+}
+
+input CreateSliderSlideInput {
   """Example field (placeholder)"""
   exampleField: Int!
 }
 
-input UpdateMenuPositionInput {
+input UpdateSliderSlideInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateMenuItemInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateMenuItemInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
