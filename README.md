@@ -88,6 +88,11 @@ npm run start:dev
 
 ```
 
+## docs 
+If you want to have a better experience, use the document and postman json . 
+
+
+
 The application should now be running locally on the specified port.
 
 ## GraphQL API
